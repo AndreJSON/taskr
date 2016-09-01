@@ -1,1 +1,1 @@
-sudo node server.js
+sudo -u postgres node server.js
