@@ -1,16 +1,14 @@
 /*jslint node: true */
 'use strict';
 var db = require('./database-handler.js');
-
-var generalTasks = [];
-db.query();
+db.init(); //Initialize auto updating of cache.
 
 module.exports = {
 	getGeneralTasks: function () {
-		return {tasks: generalTasks};
+		return {tasks: db.getGeneralTasks};
 	},
 	
 	addGeneralTask: function (task) {
-		db.query(db.queries.addGeneralTask);
+		db.query(db.queries.addGeneralTask(task));
 	}
 };

@@ -1,14 +1,12 @@
-/*global angular*/
-
 angular.module('app').controller('mainController', function ($scope, $log, $http, $timeout) {
 	'use strict';
 	
-	$scope.greeting = undefined;
+	$scope.generalTasks = undefined;
 	
-	function getGreeting() {
-		$http.get('/tasks-general', {params: {name: 'Mr. World'}}).then(
+	function getGeneralTasks() {
+		$http.get('/general-tasks').then(
 			function (res) {
-				$scope.greeting = res.data.greeting;
+				$scope.generalTasks = res.data.tasks;
 			},
 			function (err) {
 				$log.info('Could not get greeting.');
@@ -17,7 +15,7 @@ angular.module('app').controller('mainController', function ($scope, $log, $http
 	}
 	
 	function init() {
-		getGreeting();
+		getGeneralTasks();
 	}
 	
 	$timeout(init);

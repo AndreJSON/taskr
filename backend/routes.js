@@ -1,14 +1,18 @@
-/*jslint node: true */
 'use strict';
 
 var bodyParser = require('body-parser');
-var taskHandler = require('./task-handler.js');
+var tasks = require('./task-interface.js');
 
 module.exports = function (app) {
 	app.use(bodyParser.json());
+
+	app.post('new-general-task', function (req, res) {
+		tasks.addGeneralTask(req.body);
+		res.end();
+	})
 	
-	app.get('/tasks-general', function (req, res) {
-		res.json(taskHandler.getGeneralTasks());
+	app.get('/general-tasks', function (req, res) {
+		res.json(tasks.getGeneralTasks());
 		res.end();
 	});
 };
