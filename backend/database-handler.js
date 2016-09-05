@@ -11,6 +11,7 @@ var config = {
 	idleTimeoutMillis: 60000
 };
 var pool = new pg.Pool(config);
+var activities = [];
 var generalTasks = [];
 var timeToNextUpdate = 0;
 var timeBetweenUpdates = 5;
@@ -19,7 +20,12 @@ var timeBetweenChecks = 0.1;
 function updateLoop () {
 	if(timeToNextUpdate <= 0) {
 		timeToNextUpdate = timeBetweenUpdates;
-		query(queries.getGeneralTasks());
+		query(queries.getGeneralTasks(), function (rows) {
+			generalTasks = rows;
+		});
+		query(queries.getActivities(), function (rows) {
+			activities = rows;
+		});
 	}
 	timeToNextUpdate -= timeBetweenChecks;
 	setTimeout(updateLoop, timeBetweenChecks * 1000);
@@ -30,7 +36,7 @@ function formatString (str) {
 	return "'" + str + "'";
 }
 
-function query (str) {
+function query (str, callback) {
 	pool.connect(function (err, client, done) {
 		if (err) {
 			return console.error('Error fetching client from pool: ', err);
@@ -40,7 +46,7 @@ function query (str) {
 			if (err) {
 				return console.error('Error running query: ', err);
 			}
-			console.log(result.rows);
+			callback(result.rows);
 		});
 	});
 }
@@ -55,12 +61,18 @@ var queries = {
 		task.stop + "," +
 		task.deadline + ")"
 	},
+	getActivities: function () {
+		return "SELECT * FROM activities";
+	},
 	getGeneralTasks: function () {
 		return "SELECT * FROM general_tasks";
 	}
 }
 
 module.exports = {
+	getActivities: function () {
+		return activities;
+	},
 	getGeneralTasks: function () {
 		return generalTasks;
 	},

@@ -1,0 +1,9 @@
+<md-content ng-controller="newTaskController" class="aj-more-space-sides" layout="column">
+	<md-input-container flex>
+		<md-select placeholder="Activity" ng-model="input.activity">
+			<md-option ng-repeat="activity in tasksFactory.activities" ng-value="activity.id">
+				{{activity.name}}
+			</md-option>
+		</md-select>
+	</md-input-container>
+</md-content>
