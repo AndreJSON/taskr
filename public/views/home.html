@@ -1,4 +1,4 @@
-<md-tabs md-dynamic-height md-stretch-tabs>
+<md-tabs md-dynamic-height md-stretch-tabs="always" md-border-bottom>
 	<md-tab ng-repeat="tab in tabsFactory.tabs" label="{{tab.name}}"l>
 		<div ng-include src="'views/templates/'+tab.file"></div>
 	</md-tab>

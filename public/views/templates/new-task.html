@@ -1,9 +1,31 @@
 <md-content ng-controller="newTaskController" class="aj-more-space-sides" layout="column">
-	<md-input-container flex>
-		<md-select placeholder="Activity" ng-model="input.activity">
-			<md-option ng-repeat="activity in tasksFactory.activities" ng-value="activity.id">
-				{{activity.name}}
-			</md-option>
-		</md-select>
-	</md-input-container>
+	<form name="inputForm">
+		<div layout="row">
+			<md-input-container class="aj-space-right" id="select-container" flex>
+				<md-select placeholder="Activity" ng-model="input.activity" required>
+					<md-option ng-repeat="activity in tasksFactory.activities" ng-value="activity.id">
+						{{activity.name}}
+					</md-option>
+				</md-select>
+			</md-input-container>
+			<md-datepicker ng-model="input.start" md-placeholder="Start"></md-datepicker>
+			<md-datepicker ng-model="input.stop" md-placeholder="Stop"></md-datepicker>
+		</div>
+		<div layout="row">
+			<md-input-container class="aj-space-right" flex>
+				<label>Title</label>
+				<input ng-model="input.title" required></input>
+			</md-input-container>
+			<md-switch ng-model="input.deadline" aria-label="Deadline">Deadline?</md-switch>
+		</div>
+		<div layout="row">
+			<md-input-container class="aj-space-right" flex>
+				<label>Freetext</label>
+				<textarea ng-model="input.freetext"></textarea>
+			</md-input-container>
+			<div layout="column">
+				<md-button id="new-task-button" class="md-primary md-raised" ng-click="submit()" ng-disabled="inputForm.$invalid">Submit</md-button>
+			</div>
+		</div>
+	</form>
 </md-content>

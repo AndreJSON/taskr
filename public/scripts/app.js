@@ -20,7 +20,7 @@ angular.module('app', ['ngMaterial', 'ngRoute', 'ngMdIcons'])
 				'hue-2': '600',
 				'hue-3': 'A100'
 			})
-			.accentPalette('yellow', {
-				'default': '200'
+			.accentPalette('indigo', {
+				'default': '300'
 			});
 	});
