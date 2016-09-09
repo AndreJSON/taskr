@@ -21,6 +21,16 @@ module.exports = function (app) {
 		res.end();
 	});
 
+	app.post('/hide-task', function (req, res) {
+		tasks.hideTask(req.body);
+		res.end();
+	});
+
+	app.post('/done-general', function (req, res) {
+		tasks.doneGeneral(req.body);
+		res.end();
+	});
+
 	app.get('/activities', function (req, res) {
 		res.json(tasks.getActivities());
 		res.end();
@@ -28,6 +38,11 @@ module.exports = function (app) {
 	
 	app.get('/general-tasks', function (req, res) {
 		res.json(tasks.getGeneralTasks());
+		res.end();
+	});
+
+	app.get('/date-tasks', function (req, res) {
+		res.json(tasks.getDateTasks());
 		res.end();
 	});
 };

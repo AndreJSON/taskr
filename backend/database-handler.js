@@ -78,13 +78,19 @@ var queries = {
 		formatString(task.date + " " + task.time) + ")";
 	},
 	getActivities: function () {
-		return "SELECT * FROM activities";
+		return "SELECT * FROM activities ORDER BY id ASC";
 	},
 	getGeneralTasks: function () {
-		return "SELECT * FROM general_tasks";
+		return "SELECT * FROM general_tasks WHERE done = false ORDER BY activity_id ASC";
 	},
 	getDateTasks: function () {
-		return "SELECT * FROM date_tasks";
+		return "SELECT * FROM date_tasks WHERE done = false ORDER BY start ASC";
+	},
+	hideTask: function (info) {
+		return "UPDATE general_tasks SET hidden_until = now() + interval '"+info.hours+" hours' WHERE id = " + info.id;
+	},
+	doneGeneral: function (info) {
+		return "UPDATE general_tasks SET done = true WHERE id = " + info.id;
 	}
 };
 

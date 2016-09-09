@@ -1,0 +1,19 @@
+<md-content ng-controller="newActivityController" class="aj-more-space-sides" layout="column">
+	<form name="inputForm">
+		<div layout="row">
+			<md-input-container class="aj-space-right" flex>
+				<label>Name</label>
+				<input ng-model="input.name" required></input>
+			</md-input-container>
+		</div>
+		<div layout="row">
+			<md-input-container class="aj-space-right" flex>
+				<label>Freetext</label>
+				<textarea ng-model="input.freetext"></textarea>
+			</md-input-container>
+			<div layout="column">
+				<md-button id="new-task-button" class="md-primary md-raised" ng-click="submit()" ng-disabled="inputForm.$invalid">Submit</md-button>
+			</div>
+		</div>
+	</form>
+</md-content>

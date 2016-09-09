@@ -1,0 +1,14 @@
+<md-content ng-controller="mainController" class="aj-more-space-sides aj-more-space-top" layout="column">
+	<md-checkbox ng-model="input.showHidden" aria-label="hidden-swag">Show hidden tasks</md-checkbox>
+	<md-list>
+		<md-list-item class="md-2-line md-long-text" ng-repeat="task in tasksFactory.generalTasks | todayFilter: !!input.showHidden" layout="row">
+			<div class="md-list-item-text">
+				<h3><strong>{{tasksFactory.getActivityByID(task.activity_id).name}}</strong> {{task.title}}</h3>
+				<p style="white-space: pre-wrap">{{task.freetext}}</p>
+			</div>
+			<md-button class="md-primary" ng-click="hide(task)" ng-hide="task.deadline">Hide 1 day</md-button>
+			<md-button class="md-warn" ng-show="task.deadline">Deadline!</md-button>
+			<md-button class="md-primary md-raised" ng-click="showDoneDialog(task, $event)">Done</md-button>
+		</md-list-item>
+	</md-list>
+</md-content>

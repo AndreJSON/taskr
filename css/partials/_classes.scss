@@ -24,6 +24,26 @@
 	padding-right: $more-space;
 }
 
+.aj-space-top {
+	padding-top: $space;
+}
+
+.aj-more-space-top {
+	padding-top: $more-space;
+}
+
+.aj-no-margin {
+	margin: 0;
+}
+
+.aj-border-right {
+	border-right: 1px solid lightgrey;
+}
+
+.bold {
+	font-weight: bold;
+}
+
 #new-task-button {
 	margin-top: 13px;
 	margin-right: 0;

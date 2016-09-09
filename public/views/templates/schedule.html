@@ -1,0 +1,22 @@
+<md-content ng-controller="mainController" class="aj-more-space-sides aj-more-space-top" layout="column">
+	<div layout="row">
+		<md-button class="md-raised md-primary aj-no-margin" ng-click="changeWeek(-1)">Previous week</md-button>
+		<div flex></div>
+		<md-button class="md-raised md-primary aj-no-margin" ng-click="changeWeek(1)">Next week</md-button>
+	</div>
+	<div class="aj-space-top" layout="row" flex>
+		<div flex ng-repeat="d in viewedDays" class="{{$last !== true? 'aj-border-right' : ''}}">
+			<md-subheader ng-class="{bold: d.getDate() === today.getDate()}">{{dayNames[d.getDay()]}} {{d.getDate()}}/{{d.getMonth()+1}}</md-subheader>
+			<md-list>
+				<md-list-item ng-repeat="task in tasksFactory.dateTasks | sameDayFilter: d" class="md-3-line md-long-text" layout="row">
+					<div class="md-list-item-text">
+						<h2 class="aj-no-margin">{{task.start.getHours()}}:{{task.start.getMinutes()}}</h2>
+						<h3><strong>{{tasksFactory.getActivityByID(task.activity_id).name}}</strong></h3>
+						<h3>{{task.title}}</h3>
+						<p style="white-space: pre-wrap">{{task.freetext}}</p>
+					</div>
+				</md-list-item>
+			</md-list>
+		</div>
+	</div>
+</md-content>

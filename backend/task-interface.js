@@ -21,5 +21,11 @@ module.exports = {
 	},
 	getDateTasks: function () {
 		return {tasks: db.getDateTasks()};
+	},
+	hideTask: function (info) {
+		db.query(db.queries.hideTask(info));
+	},
+	doneGeneral: function (info) {
+		db.query(db.queries.doneGeneral(info));
 	}
 };

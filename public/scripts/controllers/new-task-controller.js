@@ -9,18 +9,18 @@ angular.module('app').controller('newTaskController', function ($scope, $log, $h
 		if($scope.input.deadline === undefined) $scope.input.deadline = false;
 		if($scope.input.start === null) $scope.input.start = undefined;
 		if($scope.input.start === undefined) {
-			$scope.newGeneralTask();
+			newGeneralTask();
 		} else {
 			$scope.input.date = formatDate($scope.input.start);
 			$scope.input.time = formatTime($scope.input.time)
-			$scope.newDateTask();
+			newDateTask();
 		}
 	};
 
 	function formatDate (d) {
 		var str = "";
 		str += d.getFullYear() + "-";
-		str += (d.getMonth().toString().length === 1? "0" + d.getMonth() : d.getMonth()) + "-";
+		str += ((d.getMonth()+1).toString().length === 1? "0" + d.getMonth() : d.getMonth()) + "-";
 		str += (d.getDate().toString().length === 1? "0" + d.getDate() : d.getDate());
 		return str;
 	};
@@ -31,7 +31,7 @@ angular.module('app').controller('newTaskController', function ($scope, $log, $h
 		return t;
 	};
 
-	$scope.newGeneralTask = function () {
+	function newGeneralTask () {
 		$http.post('/new-general-task', $scope.input).then(
 			function () {
 				$log.info('Successfully posted general task.');
@@ -42,7 +42,7 @@ angular.module('app').controller('newTaskController', function ($scope, $log, $h
 		);
 	};
 
-	$scope.newDateTask = function () {
+	function newDateTask () {
 		$http.post('/new-date-task', $scope.input).then(
 			function () {
 				$log.info('Successfully posted date task.');
