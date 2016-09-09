@@ -10,10 +10,16 @@ module.exports = {
 	addGeneralTask: function (task) {
 		db.query(db.queries.addGeneralTask(task));
 	},
+	addDateTask: function (task) {
+		db.query(db.queries.addDateTask(task));
+	},
 	getActivities: function () {
 		return {activities: db.getActivities()};
 	},
 	getGeneralTasks: function () {
 		return {tasks: db.getGeneralTasks()};
+	},
+	getDateTasks: function () {
+		return {tasks: db.getDateTasks()};
 	}
 };

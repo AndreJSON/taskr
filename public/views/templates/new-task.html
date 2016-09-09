@@ -8,8 +8,11 @@
 					</md-option>
 				</md-select>
 			</md-input-container>
+			<md-input-container class="aj-space-right">
+				<label>Time</label>
+				<input ng-model="input.time" ng-pattern="/^[0-2][0-9]:[0-5][0-9]$/"></input>
+			</md-input-container>
 			<md-datepicker ng-model="input.start" md-placeholder="Start"></md-datepicker>
-			<md-datepicker ng-model="input.stop" md-placeholder="Stop"></md-datepicker>
 		</div>
 		<div layout="row">
 			<md-input-container class="aj-space-right" flex>

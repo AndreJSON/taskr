@@ -6,13 +6,18 @@ var tasks = require('./task-interface.js');
 module.exports = function (app) {
 	app.use(bodyParser.json());
 
-	app.post('new-activity', function (req, res) {
+	app.post('/new-activity', function (req, res) {
 		tasks.addActivity(req.body);
 		res.end();
 	});
 
-	app.post('new-general-task', function (req, res) {
+	app.post('/new-general-task', function (req, res) {
 		tasks.addGeneralTask(req.body);
+		res.end();
+	});
+
+	app.post('/new-date-task', function (req, res) {
+		tasks.addDateTask(req.body);
 		res.end();
 	});
 
