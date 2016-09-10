@@ -20,7 +20,7 @@ angular.module('app').controller('newTaskController', function ($scope, $log, $h
 	function formatDate (d) {
 		var str = "";
 		str += d.getFullYear() + "-";
-		str += ((d.getMonth()+1).toString().length === 1? "0" + d.getMonth() : d.getMonth()) + "-";
+		str += ((d.getMonth()+1).toString().length === 1? "0" + (d.getMonth()+1) : (d.getMonth()+1)) + "-";
 		str += (d.getDate().toString().length === 1? "0" + d.getDate() : d.getDate());
 		return str;
 	};

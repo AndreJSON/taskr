@@ -15,7 +15,7 @@ var activities = [];
 var generalTasks = [];
 var dateTasks = [];
 var timeToNextUpdate = 0;
-var timeBetweenUpdates = 5;
+var timeBetweenUpdates = 2;
 var timeBetweenChecks = 0.1;
 
 function updateLoop () {
