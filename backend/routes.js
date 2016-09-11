@@ -26,6 +26,16 @@ module.exports = function (app) {
 		res.end();
 	});
 
+	app.post('/postpone-task', function (req, res) {
+		tasks.postponeTask(req.body);
+		res.end();
+	});
+
+	app.post('/done-date', function (req, res) {
+		tasks.doneDate(req.body);
+		res.end();
+	});
+
 	app.post('/done-general', function (req, res) {
 		tasks.doneGeneral(req.body);
 		res.end();

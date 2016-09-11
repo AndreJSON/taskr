@@ -8,11 +8,13 @@
 		<div flex ng-repeat="d in viewedDays" class="{{$last !== true? 'aj-border-right' : ''}}">
 			<md-subheader ng-class="{bold: d.getDate() === today.getDate()}">{{dayNames[d.getDay()]}} {{d.getDate()}}/{{d.getMonth()+1}}</md-subheader>
 			<md-list>
-				<md-list-item ng-repeat="task in tasksFactory.dateTasks | sameDayFilter: d" class="md-3-line md-long-text" layout="row">
-					<div class="md-list-item-text">
-						<h2 class="aj-no-margin">{{task.start.getHours()}}:{{task.start.getMinutes()}}</h2>
-						<h3><strong>{{tasksFactory.getActivityByID(task.activity_id).name}}</strong></h3>
-						<h3>{{task.title}}</h3>
+				<md-list-item ng-repeat="task in tasksFactory.dateTasks | sameDayFilter: d" class="md-3-line md-long-text" layout="row" ng-click="showDateTaskDialog(task)">
+					<div class="md-list-item-text" ng-click="showDateTaskDialog(task, $event)" tabIndex="-1">
+						<h2 class="aj-no-margin aj-unselectable">{{task.start.getHours()}}:{{task.start.getMinutes()}}</h2>
+						<h3 class="aj-unselectable">
+							<strong>{{tasksFactory.getActivityByID(task.activity_id).name}}</strong>
+						</h3>
+						<h3 class="aj-unselectable">{{task.title}}</h3>
 						<p style="white-space: pre-wrap">{{task.freetext}}</p>
 					</div>
 				</md-list-item>

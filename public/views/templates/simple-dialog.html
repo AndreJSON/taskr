@@ -1,0 +1,15 @@
+<md-dialog aria-label="Swaggie-label">
+	<md-toolbar>
+		<h2 class="md-toolbar-tools">{{title}}</h2>
+	</md-toolbar>
+	<md-dialog-content>
+		<div class="md-dialog-content">
+			{{text}}
+		</div>
+	</md-dialog-content>
+	<md-dialog-actions layout="row">
+		<md-button ng-repeat="option in options" ng-click="closeWithValue(option.value)">
+			{{option.text}}
+		</md-button>
+	</md-dialog-actions>
+</md-dialog>

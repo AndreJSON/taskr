@@ -7,6 +7,7 @@ angular.module('app').controller('newActivityController', function ($scope, $log
 	$scope.submit = function () {
 		if($scope.input.freetext === undefined) $scope.input.freetext = "";
 		newActivity();
+		$scope.input = undefined;
 	};
 
 	function newActivity () {

@@ -25,6 +25,12 @@ module.exports = {
 	hideTask: function (info) {
 		db.query(db.queries.hideTask(info));
 	},
+	postponeTask: function (info) {
+		db.query(db.queries.postponeTask(info));
+	},
+	doneDate: function (info) {
+		db.query(db.queries.doneDate(info));
+	},
 	doneGeneral: function (info) {
 		db.query(db.queries.doneGeneral(info));
 	}

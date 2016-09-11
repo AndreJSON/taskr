@@ -9,6 +9,35 @@ angular.module('app').controller('mainController', function ($scope, $log, $http
 	$scope.viewedDays = [];
 	$scope.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+	$scope.refresh = function () {
+		init();
+	}
+
+	$scope.showDateTaskDialog = function (task, ev) {
+		$mdDialog.show({
+			controller: 'simpleDialogController',
+			templateUrl: 'views/templates/simple-dialog.html',
+			targetEvent: ev,
+			clickOutsideToClose: true,
+			locals: {
+				title: "Manage task",
+				text: "What do you wish to do with this task?",
+				options: [
+					{text: "Done", value: "done"},
+					{text: "Postpone", value: "postpone"},
+					{text: "Cancel", value: "cancel"}
+				]
+			}
+		}).then(
+			function (option) {
+				if(option === 'done')
+					doneDate(task.id);
+				if(option === 'postpone')
+					postpone(task.id);
+			}
+		);
+	};
+
 	$scope.hide = function (task) {
 		var t = {}
 		t.id = task.id;
@@ -33,7 +62,7 @@ angular.module('app').controller('mainController', function ($scope, $log, $http
 
 		$mdDialog.show(dialog).then(
 			function () {
-				done(task.id);
+				doneGeneral(task.id);
 			},
 			function () {
 				$log.info("Did not delete task.");
@@ -46,7 +75,31 @@ angular.module('app').controller('mainController', function ($scope, $log, $http
 		$scope.viewedDays = setViewedDays();
 	};
 
-	function done(id) {
+	function postpone (id) {
+		var t = {}
+		t.id = id;
+		t.hours = 24;
+		$http.post('/postpone-task', t).then(
+			function (res) {
+				$log.info("Successfully postponed task.")
+			},
+			function (err) {
+				$log.info("Could not postpone task.");
+			})
+	};
+
+	function doneDate(id) {
+		$http.post('/done-date', {id: id}).then(
+			function (res) {
+				$log.info('Successfully marked task as done.')
+			},
+			function (err) {
+				$log.info('Could not mark task as done.');
+			}
+		);
+	};
+
+	function doneGeneral(id) {
 		$http.post('/done-general', {id: id}).then(
 			function (res) {
 				$log.info('Successfully marked task as done.')

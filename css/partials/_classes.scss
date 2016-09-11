@@ -44,6 +44,14 @@
 	font-weight: bold;
 }
 
+.aj-unselectable {
+	-webkit-user-select: none;       
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
 #new-task-button {
 	margin-top: 13px;
 	margin-right: 0;

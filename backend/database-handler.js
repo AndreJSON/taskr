@@ -89,6 +89,12 @@ var queries = {
 	hideTask: function (info) {
 		return "UPDATE general_tasks SET hidden_until = now() + interval '"+info.hours+" hours' WHERE id = " + info.id;
 	},
+	postponeTask: function (info) {
+		return "UPDATE date_tasks SET start = start + interval '"+info.hours+" hours' WHERE id = " + info.id;
+	},
+	doneDate: function (info) {
+		return "UPDATE date_tasks SET done = true WHERE id = " + info.id;
+	},
 	doneGeneral: function (info) {
 		return "UPDATE general_tasks SET done = true WHERE id = " + info.id;
 	}

@@ -15,6 +15,7 @@ angular.module('app').controller('newTaskController', function ($scope, $log, $h
 			$scope.input.time = formatTime($scope.input.time)
 			newDateTask();
 		}
+		$scope.input = undefined;
 	};
 
 	function formatDate (d) {
